@@ -260,6 +260,7 @@ namespace Hangman
                 "Created by Daniel Aguirre. "
             }, true );
             ClearAfterKeyPress();
+            Environment.Exit(0);
         }
 
 

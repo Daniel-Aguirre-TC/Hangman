@@ -10,7 +10,7 @@ namespace Hangman
         private static List<string> lastFiveAnswersPulled = new List<string>();
         static List<string> possibleAnswers = new List<string>()
         {
-            "Animal", "Frog", "School", "Apple", "Blue", "Lion"
+            "Animal", "Frog", "School", "Apple", "Blue", "Lion", "Alphabet", "Yellow", "Orange", "Elephant", ""
         };
 
 
