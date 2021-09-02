@@ -156,10 +156,11 @@ namespace Hangman
         /// </summary>
         /// <param name="input"></param>
         /// <param name="invalidEntry"></param>
-        public static void PrintPage(char input, bool invalidEntry)
+        public static void PrintPage(char inputChar, bool invalidEntry)
         {
             if (invalidEntry)
             {
+                var input = ConvertEnterChar(inputChar);
                 PrintBase();
                 CenterAndPrint(new string[] { 
                     $"'{input}' is not a letter.", "",
@@ -203,16 +204,27 @@ namespace Hangman
             PrintNextGuessRequest();
         }
 
+        static string ConvertEnterChar(char charToConvert)
+        {
+            string lastInput = charToConvert.ToString();
+            if (charToConvert == ((char)ConsoleKey.Enter))
+            {
+                lastInput = "Enter";
+            }
+            return lastInput;
+        }
+
         public static bool PrintNewGameOffer(bool playerWon, char invalidCharEntered)
         {
-                string gameWonMessage = playerWon ? "Congrats on winning the game!" : "You didn't win this time, but you might next time!";
-                //ClearAfterKeyPress();
-                CenterMidScreenAndPrint(new string[] {
-                gameWonMessage, "",
-                "Would you like to play again?", "",
-                $"You entered '{invalidCharEntered}', which is not a valid option.", "",
-                "Please enter y/n "
-                }, true);
+            var lastInput = ConvertEnterChar(invalidCharEntered);
+            string gameWonMessage = playerWon ? "Congrats on winning the game!" : "You didn't win this time, but you might next time!";
+            //ClearAfterKeyPress();
+            CenterMidScreenAndPrint(new string[] {
+            gameWonMessage, "",
+            "Would you like to play again?", "",
+            $"You entered '{lastInput}', which is not a valid option.", "",
+            "Please enter y/n "
+            }, true);
             return InputHandler.OfferReplay(playerWon);
             
         }

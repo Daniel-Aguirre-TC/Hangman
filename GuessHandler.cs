@@ -18,7 +18,6 @@ namespace Hangman
         public static string PullGuessesMade()
         {
             var guessesToReturn = string.Empty;
-            guessesMade.Sort();
             foreach (var letter in guessesMade)
             {
                 guessesToReturn += $" {letter},";
